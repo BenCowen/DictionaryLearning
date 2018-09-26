@@ -15,6 +15,10 @@ parameters.
 # (0) Import modules.
 #######################################################
 import numpy as np
+import matplotlib
+# The following line must be before importing matplotlib.pyplot or pylab.
+# (only necessary on remote / devbox)
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 def printProgressFigs(savePath, extension, lossHist, errHist, spstyHist):
