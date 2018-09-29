@@ -1,7 +1,7 @@
 ### TO-DO
-* go thru all files for cleanup
-* perform parameter search for each dataset so good dictionaries can be obtained repeatably
-* save dictionary object
+* save dictionary objects
+* UPDATE: parameter search is now running on the devbox (so good dictionaries can be obtained repeatably)
+* put lua version on (eh...)
 
 # Sparse Dictionary Learning
 This repository provides some basic experiments and tools for training a linear dictionary (e.g. for vectors, including vectorized image patches).
