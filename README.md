@@ -40,7 +40,7 @@ the optimal code of <a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{
 given the current dictionary. In this repo we compute optimal codes using an algorithm called FISTA.
 Note: <a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{x^*}(p)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mathbf{x^*}(p)" title="\mathbf{x^*}(p)" /></a>
 depends on 
-<a href="https://www.codecogs.com/eqnedit.php?latex=A" target="_blank"><img src="https://latex.codecogs.com/gif.latex?A" title="A" /></a>,
+<a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{A}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mathbf{A}" title="\mathbf{A}" /></a>,
 but it does *NOT* depend on the algorithm used to encode <a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{y}(p)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mathbf{y}(p)" title="\mathbf{y}(p)" /></a>,
 since it is a convex problem with a unique solution) 
 3. Next, we un-fix <a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{A}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mathbf{A}" title="\mathbf{A}" /></a>, compute the gradient of <a href="https://www.codecogs.com/eqnedit.php?latex=F" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F" title="F" /></a>
