@@ -31,7 +31,7 @@ codeLen    = sigLen              # "1x overcomplete"
 L1_weightList  = [.1, .15, .2]
 
 # OPTIMIZATION PARAMETERS:
-maxEpoch   = 50
+maxEpoch   = 20
 batchSizeList = [10]
 learnRateList = [50, 100, 200, 300, 400, 1000]
 LRDecayList = [0.99, .9]
