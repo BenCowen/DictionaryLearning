@@ -16,22 +16,24 @@ parameters.
 from loadImDat import loadData
 # TRAINING
 from DictionaryTraining import trainDictionary
+# PLOTTING
+import matplotlib.pyplot as plt
 
 #######################################################
 # (1) Define experiment.
 # TODO: put this in a .json configuration file.
 #######################################################
 # Cost function parameters.
-dataset    = "CIFAR10"
+dataset    = "FashionMNIST"
 patchSize  = 10
 sigLen     = patchSize**2
 codeLen    = sigLen              # "1x overcomplete"
-L1_weightList  = [0.8, 1.0, 1.2]
+L1_weightList  = [.5, 0.723]
 
 # OPTIMIZATION PARAMETERS:
-maxEpoch   = 8
+maxEpoch   = 100
 batchSizeList = [100]
-learnRateList = [5e2, 7.5e2, 5e3]
+learnRateList = [0.1, 1, 10, 100, 6000]
 LRDecayList = [0.999,.9]
 
 # LOGISTICS:
