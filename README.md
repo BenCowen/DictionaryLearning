@@ -28,19 +28,23 @@ is its corresponding _optimal sparse code_.
 
 What do we mean by optimal sparse code? And why would we optimize an L1 term that does not include
 <a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{A}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mathbf{A}" title="\mathbf{A}" /></a>
-(hence giving a zero gradient)? The procedure is as follows.
-1. Select a batch of image patches (or whatever training data): <a href="https://www.codecogs.com/eqnedit.php?latex=y(1),...y(b)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y(1),...y(b)" title="y(1),...y(b)" /></a>
+(hence giving a zero subgradient)? The procedure is as follows.
+1. Select a batch of image patches (or whatever training data): <a href="https://www.codecogs.com/eqnedit.php?latex=y(p),...,y(p&plus;B)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y(p),...,y(p&plus;B)" title="y(p),...,y(p+B)" /></a>
 2. Compute optimal codes for each <a href="https://www.codecogs.com/eqnedit.php?latex=y(p)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y(p)" title="y(p)" /></a>.
-How: fix <a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{A}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mathbf{A}" title="\mathbf{A}" /></a>.
-Now <a href="https://www.codecogs.com/eqnedit.php?latex=F" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F" title="F" /></a>
-is convex, so the argument-minimimum with respect to <a href="https://www.codecogs.com/eqnedit.php?latex=x" target="_blank"><img src="https://latex.codecogs.com/gif.latex?x" title="x" /></a>,
-gives us an optimal code. We call  <a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{x^*}(p)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mathbf{x^*}(p)" title="\mathbf{x^*}(p)" /></a>
+How? Fix <a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{A}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mathbf{A}" title="\mathbf{A}" /></a>.
+With fixed <a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{A}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mathbf{A}" title="\mathbf{A}" /></a>, <a href="https://www.codecogs.com/eqnedit.php?latex=F" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F" title="F" /></a>
+is convex with respect to <a href="https://www.codecogs.com/eqnedit.php?latex=x" target="_blank"><img src="https://latex.codecogs.com/gif.latex?x" title="x" /></a>!
+So, we compute the argument-minimimum with respect to <a href="https://www.codecogs.com/eqnedit.php?latex=x" target="_blank"><img src="https://latex.codecogs.com/gif.latex?x" title="x" /></a>,
+to obtain an optimal code. We call  <a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{x^*}(p)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mathbf{x^*}(p)" title="\mathbf{x^*}(p)" /></a>
 the optimal code of <a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{y}(p)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mathbf{y}(p)" title="\mathbf{y}(p)" /></a>,
 given the current dictionary. In this repo we compute optimal codes using an algorithm called FISTA.
-3. Now we compute the gradient of <a href="https://www.codecogs.com/eqnedit.php?latex=F" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F" title="F" /></a>
+3. Next, we un-fix <a href="https://www.codecogs.com/eqnedit.php?latex=\mathbf{A}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mathbf{A}" title="\mathbf{A}" /></a>, compute the gradient of <a href="https://www.codecogs.com/eqnedit.php?latex=F" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F" title="F" /></a>
 with respect to <a href="https://www.codecogs.com/eqnedit.php?latex=A" target="_blank"><img src="https://latex.codecogs.com/gif.latex?A" title="A" /></a>
-and perform backpropagation**
-4. Go back to Step 1, unless <a href="https://www.codecogs.com/eqnedit.php?latex=A" target="_blank"><img src="https://latex.codecogs.com/gif.latex?A" title="A" /></a> has converged.
+and perform backpropagation using the batch.**
+4. Re-normalize the columns of <a href="https://www.codecogs.com/eqnedit.php?latex=A" target="_blank"><img src="https://latex.codecogs.com/gif.latex?A" title="A" /></a>.
+5. Go back to Step 1 and pull out a fresh batch, unless <a href="https://www.codecogs.com/eqnedit.php?latex=A" target="_blank"><img src="https://latex.codecogs.com/gif.latex?A" title="A" /></a> has converged.
+
+In summary, we do not couple the problems of sparse coding (producing codes) and training a decoder (a.k.a. dictionary). Rather, we iterate between them.
 
 After successful optimization, the following should hold:
 
