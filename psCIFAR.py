@@ -13,9 +13,11 @@ parameters.
 # (0) Import modules.
 #######################################################
 # DATA
-from loadImDat import loadData
+from DATA.loadImDat import loadData
 # TRAINING
-from DictionaryTraining import trainDictionary
+from AUX.DictionaryTraining import trainDictionary
+# PLOTTING
+import matplotlib.pyplot as plt
 
 #######################################################
 # (1) Define experiment.
@@ -26,17 +28,17 @@ dataset    = "CIFAR10"
 patchSize  = 10
 sigLen     = patchSize**2
 codeLen    = sigLen              # "1x overcomplete"
-L1_weightList  = [0.8, 1.0, 1.2]
+L1_weightList  = [.1, .125, .2]
 
 # OPTIMIZATION PARAMETERS:
-maxEpoch   = 8
-batchSizeList = [100]
-learnRateList = [5e2, 7.5e2, 5e3]
-LRDecayList = [0.999,.9]
+maxEpoch   = 12
+batchSizeList = [10]
+learnRateList = [50, 100]
+LRDecayList = [1]
 
 # LOGISTICS:
 USE_CUDA = True
-savePath = 'parameterSearch/'
+savePath = 'paramSearchResults/'
 
 #######################################################
 # (2) Set up data loader and train dictionary.
@@ -62,8 +64,8 @@ for i,bsz in  enumerate(batchSizeList):
                                                   codeLen, dataset,
                                                   maxEpoch = maxEpoch,
                                                   useCUDA = USE_CUDA,
-                                                  fistaIters = 65,
-                                                  printFreq = 100,
+                                                  fistaIters = 100,
+                                                  printFreq = 1000,
                                                   saveFreq = 100,
                                                   # looped parameters:
                                                   l1w = l1w,

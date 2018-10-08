@@ -15,6 +15,9 @@ parameters.
 # (0) Import modules.
 #######################################################
 import numpy as np
+# The following two lines are for the remote branch.
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 def printProgressFigs(savePath, extension, lossHist, errHist, spstyHist):

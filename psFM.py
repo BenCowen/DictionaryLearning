@@ -24,17 +24,17 @@ import matplotlib.pyplot as plt
 # TODO: put this in a .json configuration file.
 #######################################################
 # Cost function parameters.
-dataset    = "MNIST"
-patchSize  = 32
+dataset    = "FashionMNIST"
+patchSize  = 10
 sigLen     = patchSize**2
 codeLen    = sigLen              # "1x overcomplete"
-L1_weightList  = [.2]
+L1_weightList  = [.1, .15, .2]
 
 # OPTIMIZATION PARAMETERS:
 maxEpoch   = 10
-batchSizeList = [10]
-learnRateList = [4e3, 5e3, 6e3]
-LRDecayList = [1]
+batchSizeList = [12]
+learnRateList = [200, 600, 1000]
+LRDecayList = [0.99]
 
 # LOGISTICS:
 USE_CUDA = True
@@ -64,7 +64,7 @@ for i,bsz in  enumerate(batchSizeList):
                                                   codeLen, dataset,
                                                   maxEpoch = maxEpoch,
                                                   useCUDA = USE_CUDA,
-                                                  fistaIters = 200,
+                                                  fistaIters = 100,
                                                   printFreq = 1000,
                                                   saveFreq = 100,
                                                   # looped parameters:

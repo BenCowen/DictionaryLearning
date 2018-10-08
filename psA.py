@@ -13,9 +13,9 @@ parameters.
 # (0) Import modules.
 #######################################################
 # DATA
-from loadImDat import loadData
+from DATA.loadImDat import loadData
 # TRAINING
-from DictionaryTraining import trainDictionary
+from AUX.DictionaryTraining import trainDictionary
 # PLOTTING
 import matplotlib.pyplot as plt
 
@@ -24,21 +24,21 @@ import matplotlib.pyplot as plt
 # TODO: put this in a .json configuration file.
 #######################################################
 # Cost function parameters.
-dataset    = "FashionMNIST"
-patchSize  = 10
+dataset    = "ASIRRA"
+patchSize  = 16
 sigLen     = patchSize**2
 codeLen    = sigLen              # "1x overcomplete"
-L1_weightList  = [.5, 0.723]
+L1_weightList  = [.125, .15, .175, .2]
 
 # OPTIMIZATION PARAMETERS:
-maxEpoch   = 100
-batchSizeList = [100]
-learnRateList = [0.1, 1, 10, 100, 6000]
-LRDecayList = [0.999,.9]
+maxEpoch   = 20
+batchSizeList = [10]
+learnRateList = [250]
+LRDecayList = [1]
 
 # LOGISTICS:
 USE_CUDA = True
-savePath = 'parameterSearch/'
+savePath = 'paramSearchResults/'
 
 #######################################################
 # (2) Set up data loader and train dictionary.
@@ -64,8 +64,8 @@ for i,bsz in  enumerate(batchSizeList):
                                                   codeLen, dataset,
                                                   maxEpoch = maxEpoch,
                                                   useCUDA = USE_CUDA,
-                                                  fistaIters = 65,
-                                                  printFreq = 100,
+                                                  fistaIters = 100,
+                                                  printFreq = 1000,
                                                   saveFreq = 100,
                                                   # looped parameters:
                                                   l1w = l1w,

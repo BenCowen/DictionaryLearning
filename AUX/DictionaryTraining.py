@@ -23,7 +23,6 @@ from AUX.class_dict import dictionary
 # ALGORITHMS
 from AUX.FISTA import FISTA
 # PLOTTING
-import matplotlib.pyplot as plt
 from AUX.writeProgressFigs import printProgressFigs
 # DATA
 from AUX.fcn_patchExtract import extractPatches

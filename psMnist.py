@@ -23,17 +23,18 @@ import matplotlib.pyplot as plt
 # (1) Define experiment.
 # TODO: put this in a .json configuration file.
 #######################################################
+#********** official best mnist!!*****
 # Cost function parameters.
 dataset    = "MNIST"
-patchSize  = 32
+patchSize  = 10
 sigLen     = patchSize**2
 codeLen    = sigLen              # "1x overcomplete"
-L1_weightList  = [.2]
+L1_weightList  = [.3]
 
 # OPTIMIZATION PARAMETERS:
 maxEpoch   = 10
 batchSizeList = [10]
-learnRateList = [4e3, 5e3, 6e3]
+learnRateList = [200]
 LRDecayList = [1]
 
 # LOGISTICS:
@@ -64,8 +65,8 @@ for i,bsz in  enumerate(batchSizeList):
                                                   codeLen, dataset,
                                                   maxEpoch = maxEpoch,
                                                   useCUDA = USE_CUDA,
-                                                  fistaIters = 200,
-                                                  printFreq = 1000,
+                                                  fistaIters = 75,
+                                                  printFreq = 10000,
                                                   saveFreq = 100,
                                                   # looped parameters:
                                                   l1w = l1w,
@@ -76,7 +77,7 @@ for i,bsz in  enumerate(batchSizeList):
                                                   atomImName = atomImName)
 
 
-
+print("pick parameters with the best recon/sparsity tradeoff!")
 
 
 

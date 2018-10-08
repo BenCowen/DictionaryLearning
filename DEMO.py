@@ -19,8 +19,6 @@ import numpy as np
 from DATA.loadImDat import loadData
 # TRAINING
 from AUX.DictionaryTraining import trainDictionary
-# PLOTTING
-import matplotlib.pyplot as plt
 
 #######################################################
 # (1) Define experiment.
